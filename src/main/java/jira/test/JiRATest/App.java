@@ -35,11 +35,11 @@ public class App {
 		//final JiraRestClient restClient = factory.createWithBasicHttpAuthentication(jiraServerUri, "test1", "test123");
 		
 		/*... in production ...*/
-		final URI jiraServerUri = new URI("http://10.26.6.47/");
+		final URI jiraServerUri = new URI("http://localhost/");
 		
-		final JiraRestClient restClient = factory.createWithBasicHttpAuthentication(jiraServerUri, "abdullah.alqassabi", "SQU_Sniper57984");
-		final SearchRestClient searchClient = factory.createWithBasicHttpAuthentication(jiraServerUri, "abdullah.alqassabi", "SQU_Sniper57984").getSearchClient();
-		final IssueRestClient issueClient = factory.createWithBasicHttpAuthentication(jiraServerUri, "abdullah.alqassabi", "SQU_Sniper57984").getIssueClient();
+		final JiraRestClient restClient = factory.createWithBasicHttpAuthentication(jiraServerUri, "user", "pass");
+		final SearchRestClient searchClient = factory.createWithBasicHttpAuthentication(jiraServerUri, "user", "pass").getSearchClient();
+		final IssueRestClient issueClient = factory.createWithBasicHttpAuthentication(jiraServerUri, "user", "pass").getIssueClient();
 		
 		/*... test project ...*/
 		//final Project issue = restClient.getProjectClient().getProject("TEST").claim();
@@ -66,7 +66,7 @@ public class App {
 	     }
 	   	
 		/*... Edit Issue (add comment) ...*/
-		Promise<Issue> issuePromise = issueClient.getIssue("MO-201");
+		Promise<Issue> issuePromise = issueClient.getIssue("issue-id");
 		Issue issue = issuePromise.claim();
 		
 		issueClient.addComment(issue.getCommentsUri(), Comment.valueOf("This is Test Comment"));
